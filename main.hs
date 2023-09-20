@@ -2,6 +2,7 @@
 -- The return type should be a pair of floating-point numbers. In case there is no solution, function should throw error (see example below) 
 -- Also, write the type of solveQuadratic function
 -- solveQuadratic ::
+
 solveQuadratic :: Float -> Float -> Float -> (Float, Float)
 
 solveQuadratic a b c = if (b ^ 2 - 4 * a * c < 0) then error "ERROR!!!!!!ASHIBKA" 
