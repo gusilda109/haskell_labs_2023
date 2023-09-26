@@ -23,6 +23,7 @@ collatz n
     | (n `mod` 2) == 0 = 1 + collatz(n `div` 2)  
     | (n `mod` 2) /= 0 = 1 + collatz((3*n) + 1)
 
+
 isPow2 :: Int -> Int
 
 isPow2 n
