@@ -1,0 +1,73 @@
+-- task: 
+-- implement your own versions of standard lib functions
+-- allowed:
+--  - recursion, co-recursion
+--  - pattern-matching
+--  - where, case of, if then else etc
+-- not allowed:
+--  - standard library functions, such as:
+--  - head, tail, (!!), etc...
+
+-- goal:
+-- start thinking recursively
+
+-- заметочки:
+{-
+    В хаскелле принято (как и в математике) вспомогательные функции называть тем же именем, но с апострофом
+    пример: f, f', f'', f''' это все валидные имена функций
+
+    Непосредственно про вспомогательные функции:
+        иногда для работы вашей функции удобно иметь дополнительную функцию, которая решает более мелкую задачу
+        ее можно определить как top-level функцию, например:
+    foo x y = (fooHelper x) + y
+    fooHelper x = ...
+
+        но haskell way сделать это с помощью where-синтаксиса:
+    foo x y = (fooHelper x) + y
+        where fooHelper x = ...
+
+        существенный плюс в том, что fooHelper не видно вне этой функции и она не засоряет вам пространство имен
+-}
+
+-- Каждую следующую функцию определите самостоятельно, запишите для каждой тип.
+-- Считайте, что мы работаем только со списками целых чисел
+-- Чтобы узнать тип оригинальной функции, пишите в ghci ":t head"
+-- Чтобы почитать документацию, пользуйтесь https://hackage.haskell.org/package/base-4.17.0.0/docs/Prelude.html#v:last
+-- Если сможете придумать простую имплементацию через другие собственные функции,
+-- определите обоими способами, напр:
+{-
+last'' = head' . reverse'
+-}
+
+head' = undefined
+tail' = undefined
+last' = undefined
+init' = undefined
+length' = undefined
+null' = undefined
+-- reverse' = undefined -- эту можно не делать пока что
+drop' = undefined
+sum' = undefined
+product' = undefined
+elem' = undefined
+
+-- пример с семинара
+take' :: Int -> [Int] -> [Int]
+take' _ [] = []
+take' 0 _ = []
+take' n (x:xs) =  x : take' (pred n) xs
+
+-- пример без паттерн матчинга (т.н. spaghetti code)
+-- без паттерн матчинга пришлось использовать head и tail
+take'' :: Int -> [Int] -> [Int]
+take'' n lst = 
+    if n <= 0 || lst == [] then [] else head lst : take'' (n - 1) (tail lst)
+
+{-
+    -- Holes example, try to compile:
+last'' :: [Int] -> Int
+last'' [] = error "impossible"
+last'' (x:xs) = last _what
+    -- Shows: Found hole: _what :: [Int], indicating that _what should be list of integers
+-}
+
