@@ -25,7 +25,9 @@ last' (_:xs) = last' xs
 
 init' :: [Int] -> [Int]
 
-init' lst = [x | x <- lst, notElem x [last' lst]]
+init' [] = []
+init' [x] = []
+init' (x:xs) = x : init' xs
 
 null' :: [Int] -> Bool
 
@@ -58,3 +60,9 @@ elem' _ [] = False
 elem' n (x:xs)            
     | n == x    = True
     | otherwise = elem' n xs
+
+reverse' :: [Int] -> [Int]
+
+reverse' [] = []
+reverse' [x] = [x]
+reverse' (x:xs) = reverse' xs ++ [x]
