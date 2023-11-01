@@ -32,6 +32,20 @@ isPow2 n
     | n `mod` 2 == 0 = isPow2(n `div` 2)
     | otherwise = 0
 
+collatz :: Int -> Int
+
+collatz n
+    | n == 1 = 0
+    | (n `mod` 2) == 0 = 1 + collatz(n `div` 2)  
+    | (n `mod` 2) /= 0 = 1 + collatz((3*n) + 1)
+
+maxCollatz :: Int -> Int
+
+maxCollatz 1 = 1
+maxCollatz n
+    | even n    = max n (maxCollatz (n `div` 2))
+    | otherwise = max n (maxCollatz (3 * n + 1))
+
 sequenceByPred :: (a -> a) -> a -> [a]
 
 sequenceByPred f x = x : sequenceByPred f (f x)
