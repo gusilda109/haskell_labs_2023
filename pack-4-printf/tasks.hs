@@ -1,4 +1,19 @@
+
+module MyPrintf where
+
 import Data.Char(digitToInt)
+
+
+myPrintf :: (Show a) => String -> [a] -> String
+myPrintf "" _ = ""
+myPrintf ('%':'s':rest) (arg:args) = show arg ++ myPrintf rest args
+myPrintf (c:rest) args = c : myPrintf rest args
+
+main :: IO ()
+main = do
+  let a = myPrintf "Hello, world!" ["World"]
+  putStrLn a
+
 
 decToBin' :: Int -> [Int]
 
